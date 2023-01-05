@@ -35,17 +35,33 @@ addEdge(2, 4);
 addEdge(3, 0);
 addEdge(3, 4);
 
-const printGraph = () => {
-  let graphline = " ";
-  let i, j;
-  for (i = 0; i < graphAdj.length; i++) {
-     for (j = 0; j < graphAdj[i].length; j++) {
-         graphline += graphAdj[i][j];
-         graphline += " "
-         if (j == graphAdj.length - 1) {
-            console.log(graphline);
-            graphline = ' ';
-         }
-     }
-   }
+let visited = new Array(5);
+console.log(visited);
+const dfs = (node)=>{
+  const queue = [];
+
+  for(let i =0; i<visited.length; i++){
+    visited[i] = false;
+  }
+
+visited[node] = true;
+queue.push(node);
+
+while (queue.length) {
+  let currentNode = queue.shift();
+  console.log(`visiting ${currentNode}`);
+
+  for(let j = 0; j< graph[currentNode].length; j++){
+
+    if(graph[currentNode][j] === 1 && visited[j] === false){
+      visited[j] = true;
+      queue.push(j)
+    }
+  }
+
 }
+
+
+}
+
+dfs(0);
